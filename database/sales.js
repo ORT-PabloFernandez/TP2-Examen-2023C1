@@ -50,9 +50,26 @@ const getCustomerPurchasesByEmailDatabase = async (email) => {
     return customersByMail;
 }
 
+
+const getUnhappyCustomersDatabase = async() => {
+    const allSales = await getAllSalesDatabase();
+    const connectiondb = await getConnection();
+
+
+    const unhappyCustomers = await connectiondb
+        .db(DATABASE)
+        .collection(SALES)
+        .find({ "customer.satisfaction": { $lt: 3 } })
+        .toArray();
+
+    return unhappyCustomers;
+}
+
+
 module.exports = {
     getAllSalesDatabase,
     getSaleByIdDatabase,
     getSalesByPurchaseMethodDatabase,
-    getCustomerPurchasesByEmailDatabase
+    getCustomerPurchasesByEmailDatabase,
+    getUnhappyCustomersDatabase,
 }
