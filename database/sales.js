@@ -35,8 +35,24 @@ const getSalesByPurchaseMethodDatabase = async (purchaseMethod) => {
     return sales;
 }
 
+const getCustomerPurchasesByEmailDatabase = async (email) => {
+    const allSales = await getAllSalesDatabase();
+    const customersByMail = [];
+    for (let i = 0; i < allSales.length; i++) {
+        const sale = allSales[i];
+        const customer = sale.customer;
+        if (customer.email === email) {
+            customer.items = sale.items;
+            customersByMail.push(customer);
+        }
+    }
+
+    return customersByMail;
+}
+
 module.exports = {
     getAllSalesDatabase,
     getSaleByIdDatabase,
-    getSalesByPurchaseMethodDatabase
+    getSalesByPurchaseMethodDatabase,
+    getCustomerPurchasesByEmailDatabase
 }

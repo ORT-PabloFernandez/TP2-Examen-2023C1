@@ -1,5 +1,5 @@
 const { response, request } = require('express');
-const {getAllSalesDatabase, getSaleByIdDatabase, getSalesByPurchaseMethodDatabase} = require("../database/sales");
+const {getAllSalesDatabase, getSaleByIdDatabase, getSalesByPurchaseMethodDatabase, getCustomerPurchasesByEmailDatabase} = require("../database/sales");
 
 const getAllSales = async(req = request, res = response) => {
     return res.json( await getAllSalesDatabase());
@@ -15,8 +15,14 @@ const getSalesByPurchaseMethod = async (req = request, res = response) => {
     return res.json(await getSalesByPurchaseMethodDatabase(purchaseMethod) );
 }
 
+const getCustomerPurchasesByEmail = async (req = request, res = response) => {
+    const {email} = req.query;
+    return res.json(await getCustomerPurchasesByEmailDatabase(email));
+}
+
 module.exports = {
     getAllSales,
     getSaleById,
-    getSalesByPurchaseMethod
+    getSalesByPurchaseMethod,
+    getCustomerPurchasesByEmail
 }
