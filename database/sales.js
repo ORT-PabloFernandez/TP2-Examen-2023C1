@@ -24,7 +24,19 @@ const getSaleByIdDatabase = async (id) => {
     return sale;
 }
 
+const getSalesByPurchaseMethodDatabase = async (purchaseMethod) => {
+    const connectiondb = await getConnection();
+    const sales = await connectiondb
+        .db(DATABASE)
+        .collection(SALES)
+        .find({ purchaseMethod: purchaseMethod })
+        .toArray()
+
+    return sales;
+}
+
 module.exports = {
     getAllSalesDatabase,
     getSaleByIdDatabase,
+    getSalesByPurchaseMethodDatabase
 }
