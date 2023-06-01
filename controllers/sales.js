@@ -1,7 +1,11 @@
-const sales = require('../data/supplies');
+const { response, request } = require('express');
+const {getAllSalesDatabase} = require("../database/sales");
 
-async function getSales(){    
-    return sales.getAllSales();
+const getAllSales = async(req = request, res = response) => {
+    return res.json( await getAllSalesDatabase());
 }
 
-module.exports = {getSales};
+
+module.exports = {
+    getAllSales,
+}

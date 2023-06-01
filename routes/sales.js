@@ -1,10 +1,8 @@
-const express = require('express');
-const router = express.Router();
-const controller = require('../controllers/sales');
+const { Router } = require('express');
+const {getAllSales} = require("../controllers/sales");
+const router = Router();
 
-router.get('/', async (req, res) => {
-    console.log("check");
-    res.json(await controller.getSales());
-});
+
+router.get('/all', getAllSales);
 
 module.exports = router;

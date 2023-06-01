@@ -8,6 +8,7 @@ let instance = null;
 async function getConnection(){
     if(instance == null){
         instance = await client.connect();
+        console.log('Conexion exitosa');
     }
     return instance;
 }
