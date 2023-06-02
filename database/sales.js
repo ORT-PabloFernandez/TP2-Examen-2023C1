@@ -52,7 +52,6 @@ const getCustomerPurchasesByEmailDatabase = async (email) => {
 
 
 const getUnhappyCustomersDatabase = async() => {
-    const allSales = await getAllSalesDatabase();
     const connectiondb = await getConnection();
 
 
@@ -65,6 +64,41 @@ const getUnhappyCustomersDatabase = async() => {
     return unhappyCustomers;
 }
 
+const getTotalSalesByLocationDatabase = async (location) => {
+    const connectiondb = await getConnection();
+    let total = 0;
+
+    const salesByLocation = await connectiondb
+        .db(DATABASE)
+        .collection(SALES)
+        .find({storeLocation: location})
+        .toArray();
+
+
+    for (let i = 0; i < salesByLocation.length; i++) {
+        const sale = salesByLocation[i];
+        const items = sale.items;
+
+        for (let j = 0; j < items.length; j++) {
+            const item = items[j];
+            const priceObject = item.price;
+            const priceValue = priceObject.toString();
+            const quantity = item.quantity;
+            total += priceValue * quantity;
+        }
+
+    }
+
+    console.log(total);
+
+    return {
+        location: location,
+        total: total,
+    };
+
+
+}
+
 
 module.exports = {
     getAllSalesDatabase,
@@ -72,4 +106,5 @@ module.exports = {
     getSalesByPurchaseMethodDatabase,
     getCustomerPurchasesByEmailDatabase,
     getUnhappyCustomersDatabase,
+    getTotalSalesByLocationDatabase
 }
