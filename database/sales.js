@@ -36,16 +36,13 @@ const getSalesByPurchaseMethodDatabase = async (purchaseMethod) => {
 }
 
 const getCustomerPurchasesByEmailDatabase = async (email) => {
-    const allSales = await getAllSalesDatabase();
-    const customersByMail = [];
-    for (let i = 0; i < allSales.length; i++) {
-        const sale = allSales[i];
-        const customer = sale.customer;
-        if (customer.email === email) {
-            customer.items = sale.items;
-            customersByMail.push(customer);
-        }
-    }
+    const connectiondb = await getConnection();
+    const customersByMail = await connectiondb
+        .db(DATABASE)
+        .collection(SALES)
+        .find({ "customer.email": email })
+        .project({ items: 1, customer: 1, })
+        .toArray();
 
     return customersByMail;
 }
@@ -53,7 +50,6 @@ const getCustomerPurchasesByEmailDatabase = async (email) => {
 
 const getUnhappyCustomersDatabase = async() => {
     const connectiondb = await getConnection();
-
 
     const unhappyCustomers = await connectiondb
         .db(DATABASE)
