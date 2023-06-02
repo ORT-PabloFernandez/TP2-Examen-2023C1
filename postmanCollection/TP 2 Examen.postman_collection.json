@@ -1,0 +1,160 @@
+{
+	"info": {
+		"_postman_id": "993c1b65-5d9c-4eb6-93ee-31966c737648",
+		"name": "TP 2 Examen",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+		"_exporter_id": "20934586"
+	},
+	"item": [
+		{
+			"name": "Get All Sales",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "http://localhost:8080/api/sales/all",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"api",
+						"sales",
+						"all"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Get sale by ID",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "http://localhost:8080/api/sales/?id=5bd761dcae323e45a93ccff8",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"api",
+						"sales",
+						""
+					],
+					"query": [
+						{
+							"key": "id",
+							"value": "5bd761dcae323e45a93ccff8"
+						}
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Get sale by purchase method",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "http://localhost:8080/api/sales/purchasemethod?purchaseMethod=In store",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"api",
+						"sales",
+						"purchasemethod"
+					],
+					"query": [
+						{
+							"key": "purchaseMethod",
+							"value": "In store"
+						}
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Get customer purchases by email",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "http://localhost:8080/api/sales/customerPurchases?email=zi@etwanus.ge",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"api",
+						"sales",
+						"customerPurchases"
+					],
+					"query": [
+						{
+							"key": "email",
+							"value": "zi@etwanus.ge"
+						}
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Get unhappy customers",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "http://localhost:8080/api/sales/unhappyCustomers",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"api",
+						"sales",
+						"unhappyCustomers"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Get total sales by location",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "http://localhost:8080/api/sales/totalSalesByLocation?storeLocation=New York",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"api",
+						"sales",
+						"totalSalesByLocation"
+					],
+					"query": [
+						{
+							"key": "storeLocation",
+							"value": "New York"
+						}
+					]
+				}
+			},
+			"response": []
+		}
+	]
+}
