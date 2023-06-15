@@ -26,6 +26,13 @@ router.get('/customs', async (req, res) => { //REVISAR NOMBRE ENDOINT Y PARAMETR
     res.json(await controller.getByCustomerDissatisfied());
 });
 
+router.get('/customs/localization/:localization', async (req, res) => { 
+    res.json(await controller.getByAmountByLocalization(req.params.localization));
+});
+
+
+
+
 
 
 

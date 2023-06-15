@@ -57,4 +57,14 @@ async function getByCustomerDissatisfied(){
 }
 
 
-module.exports = {getAllSales, getById, getByPurcheseMethod, getByCustomerEmail, getByCustomerDissatisfied};
+async function getByLocalization(localization){
+    const connectiondb = await conn.getConnection();
+    const suppliesByLocalization = await connectiondb
+                        .db(DATABASE)
+                        .collection(SALES)
+                        .find({"storeLocation" : localization})
+                        .toArray();    
+    return suppliesByLocalization;
+}
+
+module.exports = {getAllSales, getById, getByPurcheseMethod, getByCustomerEmail, getByCustomerDissatisfied,getByLocalization};
