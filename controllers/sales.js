@@ -4,4 +4,8 @@ async function getSales(){
     return sales.getAllSales();
 }
 
-module.exports = {getSales};
+async function getById(id){    
+    return sales.getById(id);
+}
+
+module.exports = {getSales,getById};
