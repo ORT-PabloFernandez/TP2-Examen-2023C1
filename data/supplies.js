@@ -24,4 +24,26 @@ async function getById(id){
     return supplies;
 }
 
-module.exports = {getAllSales, getById};
+async function getByPurcheseMethod(method){
+    const connectiondb = await conn.getConnection();
+    const supplies = await connectiondb
+                        .db(DATABASE)
+                        .collection(SALES)
+                        .find({purchaseMethod : method})
+                        .toArray();    
+    return supplies;
+}
+
+
+async function getByCustomerEmail(email){
+    const connectiondb = await conn.getConnection();
+    const supplies = await connectiondb
+                        .db(DATABASE)
+                        .collection(SALES)
+                        .find({"customer.email" : email})
+                        .toArray();    
+    return supplies;
+}
+
+
+module.exports = {getAllSales, getById, getByPurcheseMethod, getByCustomerEmail};

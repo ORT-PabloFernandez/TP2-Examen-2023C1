@@ -8,4 +8,11 @@ async function getById(id){
     return sales.getById(id);
 }
 
-module.exports = {getSales,getById};
+async function getByPurcheseMethod(method){    
+    return sales.getByPurcheseMethod(method);
+}
+
+async function getByCustomerEmail(email){    
+    return sales.getByCustomerEmail(email);
+}
+module.exports = {getSales, getById, getByPurcheseMethod, getByCustomerEmail};
