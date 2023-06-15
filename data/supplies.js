@@ -46,4 +46,15 @@ async function getByCustomerEmail(email){
 }
 
 
-module.exports = {getAllSales, getById, getByPurcheseMethod, getByCustomerEmail};
+async function getByCustomerDissatisfied(){
+    const connectiondb = await conn.getConnection();
+    const supplies = await connectiondb
+                        .db(DATABASE)
+                        .collection(SALES)
+                        .find({"customer.satisfaction" : {$lte: 3 }})
+                        .toArray();    
+    return supplies;
+}
+
+
+module.exports = {getAllSales, getById, getByPurcheseMethod, getByCustomerEmail, getByCustomerDissatisfied};

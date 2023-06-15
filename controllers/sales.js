@@ -15,4 +15,9 @@ async function getByPurcheseMethod(method){
 async function getByCustomerEmail(email){    
     return sales.getByCustomerEmail(email);
 }
-module.exports = {getSales, getById, getByPurcheseMethod, getByCustomerEmail};
+
+async function getByCustomerDissatisfied(){    
+    return sales.getByCustomerDissatisfied();
+}
+
+module.exports = {getSales, getById, getByPurcheseMethod, getByCustomerEmail, getByCustomerDissatisfied};
