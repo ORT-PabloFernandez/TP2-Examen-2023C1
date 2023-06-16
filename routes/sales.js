@@ -8,12 +8,10 @@ router.get('/', async (req, res) => {
 });
 
 
-// router.get('/:id', async (req, res) => {
-//     res.json(await controller.getById(req.params.id));
-// });
-
-router.get('/purchaseMethod/:method', async (req, res) => {
-    res.json(await controller.getByPurcheseMethod(req.params.method));
+router.get('/purchase_method/:method', async (req, res) => {
+    const pageSize = req.query.pageSize ? parseInt(req.query.pageSize): 0;
+    const page = req.query.page ? parseInt(req.query.page): 0;
+    res.json(await controller.getByPurcheseMethod(req.params.method, pageSize, page));
 });
 
 
@@ -22,8 +20,10 @@ router.get('/email/:email', async (req, res) => {
 });
 
 
-router.get('/customs', async (req, res) => { //REVISAR NOMBRE ENDOINT Y PARAMETROS
-    res.json(await controller.getByCustomerDissatisfied());
+router.get('/customs_dissatisfied', async (req, res) => { 
+    const pageSize = req.query.pageSize ? parseInt(req.query.pageSize): 0;
+    const page = req.query.page ? parseInt(req.query.page): 0;
+    res.json(await controller.getByCustomerDissatisfied(pageSize, page));
 });
 
 router.get('/customs/localization/:localization', async (req, res) => { 
@@ -31,8 +31,9 @@ router.get('/customs/localization/:localization', async (req, res) => {
 });
 
 
-
-
+ router.get('/:id', async (req, res) => {
+     res.json(await controller.getById(req.params.id));
+ });
 
 
 

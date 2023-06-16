@@ -8,16 +8,16 @@ async function getById(id){
     return sales.getById(id);
 }
 
-async function getByPurcheseMethod(method){    
-    return sales.getByPurcheseMethod(method);
+async function getByPurcheseMethod(method, pageSize, page){    
+    return sales.getByPurcheseMethod(method, pageSize, page);
 }
 
 async function getByCustomerEmail(email){    
     return sales.getByCustomerEmail(email);
 }
 
-async function getByCustomerDissatisfied(){    
-    return sales.getByCustomerDissatisfied();
+async function getByCustomerDissatisfied(pageSize, page){    
+    return sales.getByCustomerDissatisfied(pageSize, page);
 }
 
 async function getByAmountByLocalization(localization){    

@@ -19,17 +19,17 @@ async function getById(id){
     const supplies = await connectiondb
                         .db(DATABASE)
                         .collection(SALES)
-                        .find({_id: new ObjectId(id)})
-                        .toArray();    
+                        .find({_id: new ObjectId(id)}) 
+                        .toArray();  
     return supplies;
 }
 
-async function getByPurcheseMethod(method){
+async function getByPurcheseMethod(method, pageSize, page){
     const connectiondb = await conn.getConnection();
     const supplies = await connectiondb
                         .db(DATABASE)
                         .collection(SALES)
-                        .find({purchaseMethod : method})
+                        .find({purchaseMethod : method}).limit(pageSize).skip(pageSize * page)
                         .toArray();    
     return supplies;
 }
@@ -46,12 +46,12 @@ async function getByCustomerEmail(email){
 }
 
 
-async function getByCustomerDissatisfied(){
+async function getByCustomerDissatisfied(pageSize, page){
     const connectiondb = await conn.getConnection();
     const supplies = await connectiondb
                         .db(DATABASE)
                         .collection(SALES)
-                        .find({"customer.satisfaction" : {$lte: 3 }})
+                        .find({"customer.satisfaction" : {$lte: 2 }}).limit(pageSize).skip(pageSize * page)
                         .toArray();    
     return supplies;
 }
